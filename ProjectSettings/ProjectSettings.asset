@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Ketogenic Donuts
+  companyName: KetogenicDonuts
   productName: Korzen
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -785,9 +785,9 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
-    Standalone: 1
-  il2cppCompilerConfiguration:
     Standalone: 0
+  il2cppCompilerConfiguration:
+    Standalone: 1
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
