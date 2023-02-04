@@ -13,19 +13,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float deadzone = 0.5f;
     private bool inMove;
     [SerializeField] private bool canMove = true;
+    [SerializeField] private LayerMask obstaceMask;
 
     private Vector3 checkBox = new Vector3(0.25f, 1, 0.25f);
-    [SerializeField] private Vector3 debugPos;
     private Vector2 lastDir = new Vector2(0, 0);
 
     void LateUpdate()
     {
         if(canMove && input.magnitude > 0 && inMove == false)
         {
-            StartCoroutine(MovePlayer(input));
+            StartCoroutine(MovePlayer(input, waitTime));
         }
     }
-    IEnumerator MovePlayer(Vector2 dest)
+    IEnumerator MovePlayer(Vector2 dest, float wt)
     {
         inMove = true;
         Vector3 startPos = transform.position;
@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
             //dirty fix
             //transform.position = new Vector3(Mathf.RoundToInt(transform.position.x),transform.position.y, Mathf.RoundToInt(transform.position.z));
 
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(wt);
         }
         
 
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     private bool CanMoveHere(Vector3 pos)
     {
         pos.y += 1.6f;
-        return Physics.OverlapBox(pos, checkBox).Length<=0;
+        return Physics.OverlapBox(pos, checkBox, Quaternion.identity,obstaceMask).Length<=0;
     }
     public void IceSlide()
     {
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         while (inMove) { yield return null; }
         input = Vector2.zero;
-        yield return MovePlayer(lastDir);
+        yield return MovePlayer(lastDir,0);
         yield return null;
         canMove = true;
     }
@@ -121,10 +121,5 @@ public class PlayerMovement : MonoBehaviour
     {
         ToogleMovement(false);
         input = Vector2.zero;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawCube(debugPos, checkBox);
     }
 }

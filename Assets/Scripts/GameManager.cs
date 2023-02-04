@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,5 +20,16 @@ public class GameManager : MonoBehaviour
     public CinemachineVirtualCamera GetCVC()
     {
         return cvc;
+    }
+
+    public void FinishGame()
+    {
+        StartCoroutine(FinishGameCorountine());
+    }
+    IEnumerator FinishGameCorountine()
+    {
+        //efekty
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadSceneAsync(2);
     }
 }
