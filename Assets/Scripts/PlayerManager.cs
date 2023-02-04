@@ -11,7 +11,16 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        startPos = GameObject.FindGameObjectWithTag("StartPos").transform;
+        GameObject s = GameObject.FindGameObjectWithTag("StartPos");
+        if (s)
+        {
+            startPos = s.transform;
+        }
+        else
+        {
+            startPos = this.transform;
+        }
+        
         pm = player.GetComponent<PlayerMovement>();
     }
     public void SetPlayer()

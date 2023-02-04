@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CameraSwitchTile : MonoBehaviour, ITile
 {
+    [SerializeField] private Transform place;
     public void OnTileEnter(PlayerMovement pm)
     {
-        GameManager.Instance.GetCVC().Follow = transform;
+        if (place == null) place = transform;
+        GameManager.Instance.GetCVC().Follow = place;
     }
 
     public void OnTileExit(PlayerMovement pm)

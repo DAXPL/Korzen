@@ -74,11 +74,11 @@ public class PlayerMovement : MonoBehaviour
         pos.y += 1.6f;
         return Physics.OverlapBox(pos, checkBox).Length<=0;
     }
-    public void ForcePlayerToMove(Vector2 vec)
+    public void IceSlide()
     {
-        StartCoroutine(ForceMovement(lastDir));
+        StartCoroutine(ForceMovement());
     }
-    IEnumerator ForceMovement(Vector2 vec)
+    IEnumerator ForceMovement()
     {
         canMove = false;
         while (inMove) { yield return null; }
