@@ -109,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
     public void KillPlayer()
     {
         ToogleMovement(false);
+        input = Vector2.zero;
     }
 
     private void OnDrawGizmos()
