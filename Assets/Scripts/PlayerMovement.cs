@@ -1,8 +1,9 @@
+using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool canMove = true;
 
     private Vector3 checkBox = new Vector3(0.25f, 1, 0.25f);
+    [SerializeField] private Vector3 debugPos;
     private Vector2 lastDir = new Vector2(0, 0);
 
     void LateUpdate()
@@ -25,44 +27,53 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator MovePlayer(Vector2 dest)
     {
-        //while (inMove) { yield return 0; }
         inMove = true;
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.position;
         endPos.x += dest.x;
         endPos.z += dest.y;
         lastDir = dest.normalized;
-        float timePassed = 0;
-
-        while (timePassed<=moveTime && moveTime != 0)
-        {
-            transform.position = Vector3.Lerp(startPos, endPos, timePassed/moveTime);
-            yield return 0;
-            timePassed += Time.deltaTime;
-        }
-        transform.position = endPos;
-
-        CheckTiles();
-
-        //dirty fix
-        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x),transform.position.y, Mathf.RoundToInt(transform.position.z));
         
-        yield return new WaitForSeconds(waitTime);
+
+        if (CanMoveHere(endPos))
+        {
+            CheckTiles(false);
+            float timePassed = 0;
+            while (timePassed <= moveTime && moveTime != 0)
+            {
+                transform.position = Vector3.Lerp(startPos, endPos, timePassed / moveTime);
+                yield return 0;
+                timePassed += Time.deltaTime;
+            }
+
+            CheckTiles(true);
+
+            //dirty fix
+            //transform.position = new Vector3(Mathf.RoundToInt(transform.position.x),transform.position.y, Mathf.RoundToInt(transform.position.z));
+
+            yield return new WaitForSeconds(waitTime);
+        }
+        
 
         inMove = false;
     }
-    private void CheckTiles()
+    private void CheckTiles(bool didEnter)
     {
         Collider[] cols = Physics.OverlapBox(transform.position, checkBox);
         for (int i = 0; i < cols.Length; i++)
         {
             if (cols[i].TryGetComponent(out ITile tile))
             {
-                tile.OnTileEnter(this);
+                if(didEnter) tile.OnTileEnter(this);
+                else tile.OnTileExit(this);
             }
         }
     }
-    
+    private bool CanMoveHere(Vector3 pos)
+    {
+        pos.y += 1.6f;
+        return Physics.OverlapBox(pos, checkBox).Length<=0;
+    }
     public void ForcePlayerToMove(Vector2 vec)
     {
         StartCoroutine(ForceMovement(lastDir));
@@ -114,6 +125,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawCube(transform.position, checkBox);
+        Gizmos.DrawCube(debugPos, checkBox);
     }
 }

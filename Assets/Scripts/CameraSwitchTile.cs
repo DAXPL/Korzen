@@ -8,4 +8,9 @@ public class CameraSwitchTile : MonoBehaviour, ITile
     {
         GameManager.Instance.GetCVC().Follow = transform;
     }
+
+    public void OnTileExit(PlayerMovement pm)
+    {
+
+    }
 }

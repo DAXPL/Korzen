@@ -14,4 +14,8 @@ public class InstaDeathVifon : MonoBehaviour, ITile
         }
         //pm.ForcePlayerToMove(new Vector2(0,10));
     }
+
+    public void OnTileExit(PlayerMovement pm)
+    {
+    }
 }

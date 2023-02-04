@@ -5,4 +5,5 @@ using UnityEngine;
 public interface ITile
 {
     void OnTileEnter(PlayerMovement pm);
+    void OnTileExit(PlayerMovement pm);
 }
