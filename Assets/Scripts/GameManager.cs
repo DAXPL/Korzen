@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
         startGame.Raise();
     }
 
+    public void OnResetGame()
+    {
+        cvc.Follow=this.transform;
+    }
+
     public CinemachineVirtualCamera GetCVC()
     {
         return cvc;

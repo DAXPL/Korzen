@@ -18,6 +18,18 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 checkBox = new Vector3(0.25f, 1, 0.25f);
     private Vector2 lastDir = new Vector2(0, 0);
 
+    [Header("AUDIO")]
+    [SerializeField] private AudioClip iceGlide;
+    [SerializeField] private AudioClip death;
+    [SerializeField] private AudioClip[] steps;
+    [SerializeField] private float stepGap;
+    private AudioSource ass;
+
+    private void Start()
+    {
+        ass = GetComponent<AudioSource>();
+    }
+
     void LateUpdate()
     {
         if(canMove && input.magnitude > 0 && inMove == false)
@@ -39,17 +51,25 @@ public class PlayerMovement : MonoBehaviour
         {
             CheckTiles(false);
             float timePassed = 0;
+            float nextStep = Time.time;
+
             while (timePassed <= moveTime && moveTime != 0)
             {
                 transform.position = Vector3.Lerp(startPos, endPos, timePassed / moveTime);
+
+                if(Time.time >= nextStep)
+                {
+                    nextStep += stepGap;
+                    ass.PlayOneShot(Step());
+                }
+
                 yield return 0;
                 timePassed += Time.deltaTime;
             }
-
             CheckTiles(true);
 
             //dirty fix
-            //transform.position = new Vector3(Mathf.RoundToInt(transform.position.x),transform.position.y, Mathf.RoundToInt(transform.position.z));
+            transform.position = new Vector3(Mathf.RoundToInt(transform.position.x),transform.position.y, Mathf.RoundToInt(transform.position.z));
 
             yield return new WaitForSeconds(wt);
         }
@@ -83,11 +103,16 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         while (inMove) { yield return null; }
         input = Vector2.zero;
+        ass.PlayOneShot(iceGlide,0.8f);
         yield return MovePlayer(lastDir,0);
         yield return null;
         canMove = true;
     }
 
+    private AudioClip Step()
+    {
+        return steps[Random.Range(0,steps.Length)];
+    }
     public void MoveInput(InputAction.CallbackContext context)
     {
         if (!canMove) return;
@@ -121,5 +146,7 @@ public class PlayerMovement : MonoBehaviour
     {
         ToogleMovement(false);
         input = Vector2.zero;
+        ass.PlayOneShot(death);
+        CheckTiles(false);
     }
 }
