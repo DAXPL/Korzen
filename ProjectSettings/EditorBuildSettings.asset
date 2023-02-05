@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/TitiesScreen.unity
     guid: 8beacc6cfbc6a1041868fea5e0485c32
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Kamil_scene.unity
+    guid: 4d9a300053c2c1c4e8770b928f604064
   - enabled: 1
     path: Assets/Scenes/WinTities.unity
     guid: e95f55ba1c292a646bf8aeb12e983bb8
