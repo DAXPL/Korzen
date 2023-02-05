@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip[] steps;
     [SerializeField] private float stepGap;
     private AudioSource ass;
-
+    [SerializeField] private Animator anims;
     private void Start()
     {
         ass = GetComponent<AudioSource>();
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         endPos.x += dest.x;
         endPos.z += dest.y;
         lastDir = dest.normalized;
-        
+        anims.SetBool("walk", true);
 
         if (CanMoveHere(endPos))
         {
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
             //dirty fix
             transform.position = new Vector3(Mathf.RoundToInt(transform.position.x),transform.position.y, Mathf.RoundToInt(transform.position.z));
-
+            anims.SetBool("walk", false);
             yield return new WaitForSeconds(wt);
         }
         

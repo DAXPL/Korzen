@@ -11957,7 +11957,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752770410}
-  m_LocalRotation: {x: 0.550491, y: -0.000000025896139, z: 0.000000017075811, w: 0.83484113}
+  m_LocalRotation: {x: 0.550491, y: 0.000000025896139, z: -0.000000017075811, w: 0.83484113}
   m_LocalPosition: {x: 0, y: 7, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28288,6 +28288,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1157297427}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1930516434 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4975397718469160543, guid: 31670b836cc33a54dae7f93400573397,
+    type: 3}
+  m_PrefabInstance: {fileID: 7480475918554912572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1932713816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8362254612632256118, guid: 8bd52f85a591a9c4f990fe972b882110,
@@ -31741,6 +31747,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4975397718469160543, guid: 31670b836cc33a54dae7f93400573397,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 281a193ea6f42d743921bd6e57809cde, type: 2}
     - target: {fileID: 7480475916687797916, guid: 31670b836cc33a54dae7f93400573397,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -31784,18 +31795,23 @@ PrefabInstance:
     - target: {fileID: 7480475917305604291, guid: 31670b836cc33a54dae7f93400573397,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000025896139
+      value: 0.000000025896139
       objectReference: {fileID: 0}
     - target: {fileID: 7480475917305604291, guid: 31670b836cc33a54dae7f93400573397,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000017075811
+      value: -0.000000017075811
       objectReference: {fileID: 0}
     - target: {fileID: 7480475917788172928, guid: 31670b836cc33a54dae7f93400573397,
         type: 3}
       propertyPath: step
       value: 
       objectReference: {fileID: 8300000, guid: dd38bbfb73864714eacfe7baabec35b8, type: 3}
+    - target: {fileID: 7480475917788172928, guid: 31670b836cc33a54dae7f93400573397,
+        type: 3}
+      propertyPath: anims
+      value: 
+      objectReference: {fileID: 1930516434}
     - target: {fileID: 7480475917788172928, guid: 31670b836cc33a54dae7f93400573397,
         type: 3}
       propertyPath: death
