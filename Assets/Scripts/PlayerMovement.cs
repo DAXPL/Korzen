@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float waitTime = 1f;
     [SerializeField] private float deadzone = 0.5f;
     private bool inMove;
+    private bool live = true;
     [SerializeField] private bool canMove = true;
     [SerializeField] private LayerMask obstaceMask;
 
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if(canMove && input.magnitude > 0 && inMove == false)
+        if(live && canMove && input.magnitude > 0 && inMove == false)
         {
             StartCoroutine(MovePlayer(input, waitTime));
         }
@@ -144,7 +145,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void KillPlayer()
     {
-        ToogleMovement(false);
+        live = false;
+        canMove = false;
         input = Vector2.zero;
         ass.PlayOneShot(death);
         CheckTiles(false);
