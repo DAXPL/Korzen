@@ -149,4 +149,14 @@ public class PlayerMovement : MonoBehaviour
         ass.PlayOneShot(death);
         CheckTiles(false);
     }
+
+    public void SpierdolSie()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;
+        }
+    }
 }

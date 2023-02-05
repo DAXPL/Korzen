@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
 
     public void OnResetGame()
     {
-        cvc.Follow=this.transform;
+        SceneManager.LoadScene(1);
+        //cvc.Follow=this.transform;
     }
 
     public CinemachineVirtualCamera GetCVC()

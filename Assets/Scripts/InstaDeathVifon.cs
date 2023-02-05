@@ -12,6 +12,13 @@ public class InstaDeathVifon : MonoBehaviour, ITile
         {
             ev.Raise();
         }
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if(rb != null)
+        {
+            rb.isKinematic= false;
+            rb.useGravity= true;
+        }
+        pm.SpierdolSie();
         //pm.ForcePlayerToMove(new Vector2(0,10));
     }
 
