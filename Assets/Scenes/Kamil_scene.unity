@@ -28655,6 +28655,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: FernFlower
       objectReference: {fileID: 0}
+    - target: {fileID: 1038457326627989242, guid: 43b0936bc70a8bc46a3ab9effe942b7b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4579454407841743219, guid: 67cf983e8c04f634282b526d9888310e,
+        type: 3}
+    - target: {fileID: 1038457326627989243, guid: 43b0936bc70a8bc46a3ab9effe942b7b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c190245a1127d4488af7ff0513f5948, type: 2}
+    - target: {fileID: 1038457326627989244, guid: 43b0936bc70a8bc46a3ab9effe942b7b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4583485
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038457326627989244, guid: 43b0936bc70a8bc46a3ab9effe942b7b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038457326627989244, guid: 43b0936bc70a8bc46a3ab9effe942b7b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.88877255
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038457326627989244, guid: 43b0936bc70a8bc46a3ab9effe942b7b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038457326627989244, guid: 43b0936bc70a8bc46a3ab9effe942b7b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 125.439
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43b0936bc70a8bc46a3ab9effe942b7b, type: 3}
 --- !u!4 &1952756580 stripped

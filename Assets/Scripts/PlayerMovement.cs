@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector2 input;
+    [SerializeField] private Vector2 input;
     [SerializeField] private float moveTime = 1f;
     [SerializeField] private float waitTime = 1f;
     [SerializeField] private float deadzone = 0.5f;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     void LateUpdate()
     {
+        Debug.Log(transform.rotation.y);
         if(live && canMove && input.magnitude > 0 && inMove == false)
         {
             StartCoroutine(MovePlayer(input, waitTime));
@@ -137,6 +138,25 @@ public class PlayerMovement : MonoBehaviour
         {
             input.x = 0;
         }
+        Quaternion q = transform.rotation;
+
+        if(input.x > 0)
+        {
+            q.y = 1;//g
+        }
+        if (input.x < 0)
+        {
+            q.y = -0.7f; //g
+        }
+        if (input.y > 0)
+        {
+            q.y = 0f;//g
+        }
+        if (input.y < 0)
+        {
+           q.y = -2f;
+        }
+        transform.rotation = q;
     }
 
     public void ToogleMovement(bool newState)
